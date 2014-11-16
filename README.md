@@ -1,2 +1,4 @@
 unused-file-monitor
 ===================
+
+I wrote this utility to find the parts of a ancient codebase that were no longer used. I envisioned this tool to work kind of like a test coverage tool. First it takes a look through the files that are in the directory and pauses. You then enable the scan and launch your build. Then it initiates a filemonitor which monitors for any changes within the directory tree (including changes to LastAccessedDate which changes when a file is read). 'Dirty' files are noted, and at the end of the run, the program outputs a log file with the names of all directories which have not been accessed during it's run.
