@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,18 +11,9 @@ namespace FileUseMonitor
     {
         static void Main(string[] args)
         {
-            var pathToObserve = "c:\\d\\trunk\\";
-
-            var usedSourceCollection = UsedSourceCollectionFromDirectoryFactory.CreateFileCollectionFromPath(pathToObserve);
-            DescribeCollection(usedSourceCollection);
-            PauseAndPrompt("Press <enter> to start the sample.");
-
-            Console.WriteLine("\r\nWatching directory.");
-            var watcher = new UsedSourceFileSystemWatcher(pathToObserve, usedSourceCollection);
-            watcher.StartWatching();
-
-            PauseAndPrompt("Press <enter> to stop.");
-            watcher.StopWatching();
+            var pathToCompare = "c:\\d\\trunk\\";
+            var procMonListing = new HashSet<string>(File.ReadLines(@"c:\temp\filelisting.txt").Select(l=>l.ToLower()));
+            var usedSourceCollection = UsedSourceCollectionFromDirectoryFactory.CreateFileCollectionFromPath(pathToCompare, procMonListing);
             DescribeCollection(usedSourceCollection);
             File.WriteAllLines(@"C:\temp\CleanDirectories.log", usedSourceCollection.ListCleanDirectories());
 

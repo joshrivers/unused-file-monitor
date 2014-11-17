@@ -7,8 +7,8 @@ namespace FileUseMonitor
 {
     internal class UsedSourceCollection
     {
-        private readonly DirectoryCollection _directoryList = new DirectoryCollection();
-        private readonly FileCollection _fileList = new FileCollection();
+        internal readonly DirectoryCollection _directoryList = new DirectoryCollection();
+        internal readonly FileCollection _fileList = new FileCollection();
 
         public virtual void AddDirectory(string path)
         {

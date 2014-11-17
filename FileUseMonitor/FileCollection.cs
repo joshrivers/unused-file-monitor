@@ -12,6 +12,13 @@ namespace FileUseMonitor
             this.Add(fileItem);
         }
 
+        public void AddDirtyFileDetail(string path)
+        {
+            var fileItem = new FileDetail(path);
+            fileItem.Dirty = true;
+            this.Add(fileItem);
+        }
+
         public FileDetail FindOrCreateFileDetail(string path)
         {
             var fileItem = this.SingleOrDefault(f => f.Path == path);

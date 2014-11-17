@@ -6,9 +6,9 @@ namespace FileUseMonitor
 {
     class UsedSourceCollectionFromDirectoryFactory
     {
-        public static UsedSourceCollection CreateFileCollectionFromPath(string path)
+        public static UsedSourceCollection CreateFileCollectionFromPath(string path, HashSet<string> procMonListing)
         {
-            var fileCollection = new GitIgnroringUsedSourceCollection();
+            var fileCollection = new UsedSourceCollectionIgnoringGitAndWithDirtyList(procMonListing);
             var directoryQueue = new Queue<string>();
             directoryQueue.Enqueue(path);
             while (directoryQueue.Count > 0)
